@@ -5,7 +5,7 @@ import functools
 import chardet
 
 from nltk.corpus import stopwords
-from sklearn.metrics import classification_report, accuracy_score
+from sklearn.metrics import classification_report
 from sklearn.cross_validation import train_test_split
 
 from naivebayes import NaiveBayesTextClassifier
@@ -41,22 +41,18 @@ categories = os.listdir(data_dir)
 print('Reading Data...')
 documents, classes = get_texts(categories)
 
-train_docs, test_docs, train_classes, test_classes = train_test_split(documents, classes, train_size=0.7)
+train_docs, test_docs, train_classes, test_classes = train_test_split(documents, classes, train_size=0.9)
 
 clf = NaiveBayesTextClassifier(categories=categories, min_df=1, lowercase=True, stop_words=stopwords.words('english'))
+
+print('Training...')
 clf.train(train_docs, train_classes)
 
+print('Predicting...')
 predicted_classes = clf.classify(test_docs)
 
+print('Result:')
 print('-' * 72)
 print(classification_report(test_classes, predicted_classes))
 print('-' * 72)
 
-print('\n')
-
-print('-' * 42)
-print("{:<25}: {:>6} articles".format("Test data size", len(test_classes)))
-print("{:<25}: {:>6.2f} %".format(
-    "Accuracy", 100 * accuracy_score(test_classes, predicted_classes))
-)
-print('-' * 42)

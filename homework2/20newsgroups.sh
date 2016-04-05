@@ -3,7 +3,7 @@
 data_dir="data/"
 target_dir="20_newsgroups"
 target_tar=$target_dir".tar.gz"
-data_url="http://www.cs.cmu.edu/afs/cs/project/theo-11/www/naive-bayes/20_newsgroups.tar.gz"
+data_url="http://www.cs.cmu.edu/afs/cs/project/theo-11/www/naive-bayes/mini_newsgroups.tar.gz"
 
 # pip install -r requirements.txt
 

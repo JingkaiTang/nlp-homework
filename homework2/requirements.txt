@@ -1,3 +1,4 @@
+chardet
 numpy
 nltk
 scikit-learn
