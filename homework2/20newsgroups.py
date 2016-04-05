@@ -16,7 +16,10 @@ def prepare_file(folder, filename):
     fp = os.path.join(folder, filename)
     raw_data = open(fp, 'rb').read()
     codec = chardet.detect(raw_data)
-    return raw_data.decode(codec.get('encoding', 'utf-8'))
+    codec = codec.get('encoding')
+    if not codec:
+        codec = 'utf-8' 
+    return raw_data.decode(codec)
 
 
 def get_texts(categories):
